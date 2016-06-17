@@ -1,0 +1,17 @@
+header{
+    background-color: darkgrey;
+    padding: 30px;
+}
+p{
+    padding: 0px;
+}
+#leftside{
+    margin: 20px;
+}
+#rightside{
+    margin-left: 500px;
+    border-left: 4px solid darkgrey;
+}
+li:nth-child(odd){color: red}
+
+li:nth-child(even){color: blue}

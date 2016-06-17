@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+<header>
+    <h1>Task Tracker</h1>
+    <p>v2.0</p>
+</header>
+</body>
+<div id="leftside">
+    <form>
+        <labe for="taskname">Task Name</labe>
+        <input type="text" id="taskname" name="taskname" >
+        <br>
+        <label for="date">Date</label>
+        <input type="text" id="date" name="date" >
+        <br>
+        <label for="assigned">Assigned To</label>
+        <input type="text" id="assigned"  name="assigned">
+        <br>
+        <input type="submit" value="submit" >
+    </form>
+</div>
+<div id="rightside">
+    <table>
+
+            </table>
+    <ul>
+        <li>RED</li>
+        <li>BLUE</li>
+        <li>RED</li>
+        <li>BLUE</li>
+        <li>RED</li>
+    </ul>
+</div>
+<script type = "text/javascript"
+        src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type = "text/javascript" language = "javascript">
+    function showItem(i,task) {
+        var fs = fs.open('')
+        var dataItem = '<tr><td>'+task.name +'</td><td>'+task.date+'</td><td>'+task.assigned+'</td></tr>';
+        $("table").append(dataItem);
+    }
+    function showItemTable(results) {
+        $.each(results, showItem);
+    }
+    function showError(error) {
+        window.alert("Error in finding data");
+    }
+
+    var jsonobj = [];
+     var task = {};
+    $("form").submit(function (e) {
+        e.preventDefault();
+        task['name'] = $('#taskname').val();
+        task['date'] = $('#date').val();
+        task['assigned'] = $('#assigned').val();
+        jsonobj.push(task);
+    });
+            $.ajax({
+                type : 'POST',
+                dataType: 'json',
+                url: "task.json",
+                data: jsonobj,
+                success: showItemTable,
+                error: showError
+            });
+
+
+    <!--$(document).ready(function(){-->
+        <!--jsonobj = [];-->
+        <!--task ={};-->
+        <!--$("form").submit(function(e){-->
+            <!--e.preventDefault();-->
+            <!--task['name']= $('#taskname').val();-->
+            <!--task['date']= $('#date').val();-->
+            <!--task['assigned'] = $('#assigned').val();-->
+
+            <!---->
+
+
+            <!--$("table").append(tableItem);-->
+
+        <!--});-->
+        <!--console.log(task);-->
+        <!--jsonobj.push(task);-->
+        <!--console.log(jsonobj);-->
+
+
+        <!--});-->
+
+
+</script>
+
+</html>
